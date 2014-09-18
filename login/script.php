@@ -1,34 +1,34 @@
 <?php 
 // Definition der Benutzer 
-$benutzer[0]["Nickname"] ="admin"; 
-$benutzer[0]["Kennwort"] = "admin"; 
-$benutzer[0]["Nachname"] = "Mustermann"; 
-$benutzer[0]["Vorname"] = "Max"; 
+$benutzer[0]["Nickname"] ="adm_anaa"; 
+$benutzer[0]["Kennwort"] = "adminAProfi"; 
+$benutzer[0]["Nachname"] = "Cora"; 
+$benutzer[0]["Vorname"] = "Anastasia"; 
 
-$benutzer[1]["Nickname"] = "test"; 
-$benutzer[1]["Kennwort"] = "abc"; 
-$benutzer[1]["Nachname"] = "Kunze"; 
-$benutzer[1]["Vorname"] = "Martin"; 
+$benutzer[1]["Nickname"] = "adm_mano"; 
+$benutzer[1]["Kennwort"] = "adminMProfi"; 
+$benutzer[1]["Nachname"] = "Speck"; 
+$benutzer[1]["Vorname"] = "Mano"; 
 
 // Sie können an dieser Stelle beliebig viele Benutzer anlegen. 
 // Achten Sie dabei nur auf die Fortführung der Nummer. 
 
 // Aufbau der Datenbankverbindung 
 $connectionid  = mysql_connect ("localhost", "root", ""); 
-if (!mysql_select_db ("LoginSystem", $connectionid)) 
+if (!mysql_select_db ("ItProfi", $connectionid)) 
 { 
   die ("Keine Verbindung zur Datenbank"); 
 } 
 
 // Zuerst alle Datensätze löschen um keine Dopplungen zu bekommen. 
-mysql_query ("DELETE FROM benutzerdaten"); 
+mysql_query ("DELETE FROM login"); 
 
 // Daten eintragen 
 while (list ($key, $value) = each ($benutzer)) 
 { 
   // SQL-Anweisung erstellen 
   $sql = "INSERT INTO ". 
-    "benutzerdaten (Nickname, Kennwort, Nachname, Vorname) ". 
+    "login (Nickname, Kennwort, Nachname, Vorname) ". 
   "VALUES ('".$value["Nickname"]."', '". 
                        md5 ($value["Kennwort"])."', '". 
                        $value["Nachname"]."', '". 

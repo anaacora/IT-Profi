@@ -4,7 +4,7 @@ session_start ();
 
 // Datenbankverbindung aufbauen 
 $connectionid = mysql_connect ("localhost", "root", ""); 
-if (!mysql_select_db ("LoginSystem", $connectionid)) 
+if (!mysql_select_db ("ItProfi", $connectionid)) 
 { 
   die ("Keine Verbindung zur Datenbank"); 
 } 
@@ -12,7 +12,7 @@ if (!mysql_select_db ("LoginSystem", $connectionid))
 $sql = "SELECT ". 
     "Id, Nickname, Nachname, Vorname ". 
   "FROM ". 
-    "benutzerdaten ". 
+    "login ". 
   "WHERE ". 
     "(Nickname like '".$_REQUEST["name"]."') AND ". 
     "(Kennwort = '".md5 ($_REQUEST["pwd"])."')"; 
@@ -20,7 +20,7 @@ $result = mysql_query ($sql);
 
 if (mysql_num_rows ($result) > 0) 
 { 
-  // Benutzerdaten in ein Array auslesen. 
+  // login in ein Array auslesen. 
   $data = mysql_fetch_array ($result); 
 
   // Sessionvariablen erstellen und registrieren 
