@@ -28,6 +28,16 @@
 					$errors ['vorname'] = 'Fuellen Sie Bitte das Feld "Vorname" ein.';
 				
 				}
+				if($_POST['bday'] == ''){
+				
+					$errors ['bday'] = 'Fuellen Sie Bitte das Feld "Geburtsdatum" ein.';
+				
+				}
+				if($_POST['nationality'] == ''){
+				
+					$errors ['nationality'] = 'Fuellen Sie Bitte das Feld "Nationalität" ein.';
+				
+				}
 				if($_POST['email'] == ''){
 					
 					$errors ['email'] = 'Fuellen Sie Bitte das Feld "E-Mail" ein.';
@@ -36,11 +46,6 @@
 				if($_POST['password'] == ''){
 					
 					$errors ['empasswordail'] = 'Fuellen Sie Bitte das Feld "Passwort" ein.';
-				
-				}
-				if($_POST['tel'] == ''){
-					
-					$errors ['tel'] = 'Fuellen Sie Bitte das Feld "Telefon" ein.';
 				
 				}
 				if($_POST['strasse'] == ''){
@@ -82,6 +87,11 @@
 				</label>
 				<br>
 				<label> 
+					<a>*Profilbild: </a>
+					<input type="file" name="profileimg" placeholder="Profilbild" <?php if(count($_POST) > 0) if($_POST['profileimg'] != '') echo 'value="' . $_POST['profileimg'] . '" '; else echo 'class="error" ';?> />
+				</label>
+				<br>
+				<label> 
 					<a>*Name: </a>
 					<input type="text" name="name" placeholder="Name" <?php if(count($_POST) > 0) if($_POST['name'] != '') echo 'value="' . $_POST['name'] . '" '; else echo 'class="error" ';?> />
 				</label>
@@ -89,6 +99,16 @@
 				<label> 
 					<a>*Vorname: </a>
 					<input type="text" name="vorname" placeholder="Vorname" <?php if(count($_POST) > 0) if($_POST['vorname'] != '') echo 'value="' . $_POST['vorname'] . '" '; else echo 'class="error" ';?> />
+				</label>
+				<br>
+				<label> 
+					<a>*Geburtsdatum: </a>
+					<input type="date" name="bday" <?php if(count($_POST) > 0) if($_POST['bday'] != '') echo 'value="' . $_POST['bday'] . '" '; else echo 'class="error" ';?> />
+				</label>
+				<br>
+				<label> 
+					<a>*Nationalitaet: </a>
+					<input type="text" name="nationality" placeholder="Schweiz" <?php if(count($_POST) > 0) if($_POST['nationality'] != '') echo 'value="' . $_POST['nationality'] . '" '; else echo 'class="error" ';?> />
 				</label>
 				<br>
 				<label for="email" >
@@ -104,7 +124,7 @@
 				
 				<br>
 				<label for="tel" >
-					<a>*Telefon: </a>
+					<a>Telefon: </a>
 				</label>
 					<input id="tel" name="tel" type="tel" placeholder="Telefon"   <?php if(count($_POST) > 0) if($_POST['tel'] != '') echo 'value="' . $_POST['tel'] . '" '; else echo 'class="error" ';?>/>
 				
@@ -126,38 +146,7 @@
 				<br>
 				
 				
-			<!--<label> 
-					<a>Instrument: </a>
-					<input type="text" name="instrument" placeholder="Instrument" <?php if(count($_POST) > 0) if($_POST['instrument'] != '') echo 'value="' . $_POST['instrument'] . '" '; ?> />
-				</label>
 
-				<br>
-				<a <?php if(isset($errors['infos'])) echo 'class="error2" ';?>>*Informationen zu:</a>
-				<br>
-				<label>
-					<input type="radio" name="infos" value="Anmelden" <?php if(isset($_POST['infos'])) if($_POST['infos'] == 'Anmelden') echo 'checked ' ;?>/> Anmelden
-				</label>
-				<br>
-				<label>
-					<input type="radio" name="infos" value="Abmelden" <?php if(isset($_POST['infos'])) if($_POST['infos'] == 'Abmelden') echo 'checked '; ?> /> Abmelden
-				</label>
-				<br>
-				<label>
-					<input type="radio" name="infos" value="Musik Lager" <?php if(isset($_GET['lager_anmeldung'])){ echo 'checked'; }elseif(isset($_POST['infos'])) if($_POST['infos'] == 'Musik Lager') echo 'checked '; ?> />
-					Musik-Lager
-				</label>
-				<br>
-				<label>
-					<input type="radio" name="infos" value="weitere Informationen" <?php if(isset($_POST['infos'])) if($_POST['infos'] == 'weitere Informationen') echo 'checked '; ?> /> 
-					weitere Informationen 
-				</label>
-			-->	
-				<br>			
-				<label> 
-					<a >Bemerkung</a>
-					<textarea name="bemerkung" cols="35" rows="6"><?php if(isset($_POST['bemerkung']))echo @$_POST['bemerkung']; ?></textarea>
-				</label>
-		
 				
 				<h5>* = Diese Eingabefelder sind obligatorisch!</h5>
 				<input class="button" type="submit" value="Senden" />
@@ -186,15 +175,17 @@
 				if(count($errors) == 0 && count($_POST) > 0){
 					
 					$anrede = $_POST['anrede'];
+					//$profileimg = $_POST['profileimg'];
 					$name = $_POST['name'];
 					$vorname = $_POST['vorname'];
+					$bday = $_POST['bday'];
+					$nationality = $_POST['nationality'];
 					$email = $_POST['email'];
 					$password = $_POST['password'];
-					$tel = $_POST['tel'];
 					$strasse = $_POST['strasse'];
 					$plz = $_POST['plz'];
 					$ort = $_POST['ort'];
-					$bemerkung = $_POST['bemerkung'];
+					$tel = $_POST['tel'];
 
 
 					// Systemeinstellungen 
@@ -202,15 +193,17 @@
 					$pw = ""; 
 					$host = "localhost"; 
 					$database = "itprofi"; 
-					$table = "register"; 
+					$table = "register_personal"; 
 
 					// Einstellungen Ende 
 					$conn_id = mysql_connect($host,$id,$pw); 
 					mysql_select_db($database,$conn_id); 
 
-					mysql_query("INSERT INTO $table VALUES(default, '$name', '$vorname', '$email', '$passwort', '$tel', '$strasse', '$plz', '$ort')");
+					mysql_query("INSERT INTO $table VALUES(default, '$anrede', '$name', '$vorname', '$bday', '$nationality', '$email', '$passwort', '$tel', '$strasse', '$plz', '$ort')");
 
 					echo "Bestaetigung";
+
+					echo "<br><a href='register_profession.php'>Weiter</a>";
 				}	
 			?>		
 			
