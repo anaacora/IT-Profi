@@ -10,14 +10,13 @@ if (!mysql_select_db ("ItProfi", $connectionid))
 } 
 
 $sql = "SELECT ". 
-    "Id, Nickname, Nachname, Vorname ". 
+    "Id, EMail ". 
   "FROM ". 
     "login ". 
   "WHERE ". 
-    "(Nickname like '".$_REQUEST["name"]."') AND ". 
+    "(EMail like '".$_REQUEST["email"]."') AND ". 
     "(Kennwort = '".md5 ($_REQUEST["pwd"])."')"; 
 $result = mysql_query ($sql); 
-
 if (mysql_num_rows ($result) > 0) 
 { 
   // login in ein Array auslesen. 
@@ -25,9 +24,7 @@ if (mysql_num_rows ($result) > 0)
 
   // Sessionvariablen erstellen und registrieren 
   $_SESSION["user_id"] = $data["Id"]; 
-  $_SESSION["user_nickname"] = $data["Nickname"]; 
-  $_SESSION["user_nachname"] = $data["Nachname"]; 
-  $_SESSION["user_vorname"] = $data["Vorname"]; 
+  $_SESSION["user_email"] = $data["EMail"];
 
   header ("Location: intern.php"); 
 } 
