@@ -12,7 +12,7 @@ if (isset ($_REQUEST["fehler"]))
 } 
 ?> 
 <form action="login.php" method="post"> 
-  Name: <input type="text" name="name" size="20"><br> 
+  Email: <input type="email" name="email" size="20"><br> 
   Kennwort: <input type="password" name="pwd" size="20"><br> 
   <input type="submit" value="Login"> 
 </form> 

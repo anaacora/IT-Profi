@@ -27,14 +27,14 @@ CREATE TABLE register_personal (
   Strasse VarChar(50) NOT NULL default '', 
   PLZ Int(4) NOT NULL, 
   Ort VarChar(50) NOT NULL default '', 
+  Berufsbezeichnung VarChar(50) NOT NULL default '', 
+  Arbeitgeber VarChar(50) NOT NULL default '', 
+  Ausbildung VarChar(50) NOT NULL default '', 
+  Student VarChar(50) NOT NULL default '', 
   PRIMARY KEY (Id) 
 );
 
 CREATE TABLE register_profession( 
   Id Int(11) NOT NULL auto_increment, 
-  Berufsbezeichnung VarChar(50) NOT NULL default '', 
-  Arbeitgeber VarChar(50) NOT NULL default '', 
-  Ausbildung VarChar(50) NOT NULL default '', 
-  Student VarChar(50) NOT NULL default '', 
   PRIMARY KEY (Id) 
 );

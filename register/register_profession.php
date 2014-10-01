@@ -106,13 +106,13 @@
 					$pw = ""; 
 					$host = "localhost"; 
 					$database = "itprofi"; 
-					$table = "register_profession"; 
+					$table = "register_personal"; 
 
 					// Einstellungen Ende 
 					$conn_id = mysql_connect($host,$id,$pw); 
 					mysql_select_db($database,$conn_id); 
 
-					mysql_query("INSERT INTO $table VALUES(default, '$berufsbezeichnung', '$arbeitgeber', '$ausbildung', '$student')");
+					mysql_query("INSERT INTO $table (Berufsbezeichnung, Arbeitgeber, Ausbildung, Student) VALUES('$berufsbezeichnung', '$arbeitgeber', '$ausbildung', '$student')");
 
 					echo "Bestaetigung";
 				}	

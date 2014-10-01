@@ -63,6 +63,26 @@
 					$errors ['ort'] = 'Fuellen Sie Bitte das Feld "Ort" ein.';
 				
 				}
+
+
+				if($_POST['berufsbezeichnung'] == ''){
+					
+					$errors ['berufsbezeichnung'] = 'Fuellen Sie Bitte das Feld "Berufsbezeichnung" aus.';
+					
+				}				
+				if($_POST['arbeitgeber'] == ''){
+
+					$errors ['arbeitgeber'] = 'Fuellen Sie Bitte das Feld "bisherige(r) Arbeitgeber" aus.';
+				}					
+				if($_POST['ausbildung'] == ''){
+
+					$errors ['ausbildung'] = 'Fuellen Sie Bitte das Feld "Ausbildung/Lehre" aus.';
+				}
+				if(!isset($_POST['student'])){
+				
+					$errors ['student'] = 'Waehlen Sie Bitte aus, ob Sie ein Student sind.';
+					
+				}	
 			}
 		?>
 
@@ -72,10 +92,14 @@
 		
 		?>
 
+		<h1>Registration</h1>
 
+		<a href="register_personal.php">Person</a>
+		<a href="register_company.php">Firma</a>
 
 		<form action="<?= $_SERVER['PHP_SELF'] ?>" method="POST" enctype="multipart/form-data" accept-charset="utf-8">
 				
+				<h2>Allgemeine Infos</h2>
 				<a <?php if (isset($errors['anrede'])) echo 'class="error2" ';?>>*Anrede:</a>
 				<label>
 					<input type="radio" name="anrede" value="Frau" <?php if(isset($_POST['anrede'])) if($_POST['anrede'] == 'Frau') echo 'checked ' ;?>/>
@@ -144,8 +168,33 @@
 					<input type="text" name="ort" placeholder="Ort" <?php if(count($_POST) > 0) if($_POST['ort'] != '') echo 'value="' . $_POST['ort'] . '" '; else echo 'class="error" ';?> />
 				</label>
 				<br>
-				
-				
+				<h2>Berufsspezifische Infos</h2>
+				<label> 
+					<a>*Berufsbezeichnung: </a>
+					<input type="text" name="berufsbezeichnung" placeholder="Informatik Applikationsentwickler" <?php if(count($_POST) > 0) if($_POST['berufsbezeichnung'] != '') echo 'value="' . $_POST['berufsbezeichnung'] . '" '; else echo 'class="error" ';?> />
+				</label>
+				<br>
+				<br>			
+				<label> 
+					<a>*bisherige(r) Arbeitgeber</a>
+					<textarea name="arbeitgeber" cols="35" rows="6"><?php if(isset($_POST['arbeitgeber']))echo @$_POST['arbeitgeber']; ?></textarea>
+				</label>
+				<br>			
+				<label> 
+					<a>*Ausbildung/Lehre</a>
+					<textarea name="ausbildung" cols="35" rows="6"><?php if(isset($_POST['ausbildung']))echo @$_POST['ausbildung']; ?></textarea>
+				</label>
+				<br>
+				<a <?php if (isset($errors['student'])) echo 'class="error2" ';?>>*Student:</a>
+				<label>
+					<input type="radio" name="student" value="Ja" <?php if(isset($_POST['student'])) if($_POST['student'] == 'Ja') echo 'checked ' ;?>/>
+					Ja
+				</label>
+				<label>
+					<input type="radio" name="student" value="Nein" <?php if(isset($_POST['student'])) if($_POST['student'] == 'Nein') echo 'checked '; ?> />
+					Nein
+				</label>
+				<br>
 
 				
 				<h5>* = Diese Eingabefelder sind obligatorisch!</h5>
@@ -187,6 +236,11 @@
 					$ort = $_POST['ort'];
 					$tel = $_POST['tel'];
 
+					$berufsbezeichnung = $_POST['berufsbezeichnung'];
+					$arbeitgeber = $_POST['arbeitgeber'];
+					$ausbildung = $_POST['ausbildung'];
+					$student = $_POST['student'];
+
 
 					// Systemeinstellungen 
 					$id = "root"; 
@@ -199,11 +253,27 @@
 					$conn_id = mysql_connect($host,$id,$pw); 
 					mysql_select_db($database,$conn_id); 
 
-					mysql_query("INSERT INTO $table VALUES(default, '$anrede', '$name', '$vorname', '$bday', '$nationality', '$email', '$passwort', '$tel', '$strasse', '$plz', '$ort')");
+					$sql = "INSERT INTO ".
+							$table . "(Anrede, Nachname, Vorname, Geburtsdatum, Nationalitaet, EMail, Passwort, Telefon, Strasse, PLZ, Ort, Berufsbezeichnung, Arbeitgeber, Ausbildung, Student) " .
+							"VALUES('".$anrede."', '". 
+										$name."', '". 
+										$vorname."', '". 
+										$bday."', '". 
+										$nationality."', '". 
+										$email."', '". 
+										md5($passwort)."', '". 
+										$tel."', '". 
+										$strasse."', '". 
+										$plz."', '". 
+										$ort."', '". 
+										$berufsbezeichnung."', '". 
+										$arbeitgeber."', '". 
+										$ausbildung."', '". 
+										$student. "')"; 
+					mysql_query($sql);
 
 					echo "Bestaetigung";
 
-					echo "<br><a href='register_profession.php'>Weiter</a>";
 				}	
 			?>		
 			
