@@ -14,6 +14,7 @@ CREATE TABLE login (
   PRIMARY KEY (Id) 
 );
 
+<<<<<<< HEAD
 CREATE TABLE register_personal ( 
   Id Int(11) NOT NULL auto_increment, 
   Anrede VarChar(10) NOT NULL default '', 
@@ -36,5 +37,18 @@ CREATE TABLE register_personal (
 
 CREATE TABLE register_profession( 
   Id Int(11) NOT NULL auto_increment, 
+=======
+CREATE TABLE register ( 
+  Id Int(11) NOT NULL auto_increment, 
+  --Anrede ENUM(Frau, Mann);
+  Nachname VarChar(50) NOT NULL default '', 
+  Vorname VarChar(50) NOT NULL default '', 
+  EMail VarChar(100) NOT NULL default '', 
+  Passwort VarChar(50) NOT NULL default '', 
+  Telefon VarChar(50) NOT NULL default '', 
+  Strasse VarChar(50) NOT NULL default '', 
+  PLZ Int(4) NOT NULL, 
+  Ort VarChar(50) NOT NULL default '', 
+>>>>>>> mano
   PRIMARY KEY (Id) 
 );
