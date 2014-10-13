@@ -7,6 +7,7 @@
 		<link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
 		<link rel="stylesheet" href="../css/main.css">
 
+<<<<<<< HEAD
 	</head>
 	<body class="login">
 		<?php 
@@ -45,3 +46,19 @@
 		</div>
 	</body>
 </html>
+=======
+<body> 
+<?php 
+if (isset ($_REQUEST["fehler"])) 
+{ 
+  echo "Die Zugangsdaten waren ungültig."; 
+} 
+?> 
+<form action="login.php" method="post"> 
+  Email: <input type="email" name="email" size="20"><br> 
+  Kennwort: <input type="password" name="pwd" size="20"><br> 
+  <input type="submit" value="Login"> 
+</form> 
+</body> 
+</html> 
+>>>>>>> origin/anaa
