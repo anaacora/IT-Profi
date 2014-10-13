@@ -22,7 +22,7 @@
 						<h1>IT-Profi</h1>
 					</div>
 					<div class="login-box">
-						<h2>Login <small> Please login first or <a href="https://www.google.ch">register</a></h2>
+						<h2>Login <small> Please login first or <a href="https://www.google.ch">register</a></small></h2>
 						<br/>
 						<form role="form" action="login.php" method="post">
 						  <div class="form-group">
