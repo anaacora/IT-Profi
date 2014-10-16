@@ -1,4 +1,4 @@
-
+<!-- Registrierung Inhalt -->
 
 		<?php
 			
