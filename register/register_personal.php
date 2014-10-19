@@ -247,13 +247,14 @@
 					$pw = ""; 
 					$host = "localhost"; 
 					$database = "itprofi"; 
-					$table = "register_personal"; 
 
 					// Einstellungen Ende 
 					$conn_id = mysql_connect($host,$id,$pw); 
 					mysql_select_db($database,$conn_id); 
 
-					$sql = "INSERT INTO ".
+					$table = "register_personal";
+
+					$sql_reg = "INSERT INTO ".
 							$table . "(Anrede, Nachname, Vorname, Geburtsdatum, Nationalitaet, EMail, Passwort, Telefon, Strasse, PLZ, Ort, Berufsbezeichnung, Arbeitgeber, Ausbildung, Student) " .
 							"VALUES('".$anrede."', '". 
 										$name."', '". 
@@ -270,7 +271,14 @@
 										$arbeitgeber."', '". 
 										$ausbildung."', '". 
 										$student. "')"; 
-					mysql_query($sql);
+					mysql_query($sql_reg);
+
+					$table = "login"; 
+					$sql_log = "INSERT INTO ".
+							$table . "(EMail, Kennwort) " .
+							"VALUES('".$email."', '". 
+										md5($passwort). "')"; 
+					mysql_query($sql_log);
 
 					echo "Bestaetigung";
 

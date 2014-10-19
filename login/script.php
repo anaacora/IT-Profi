@@ -16,9 +16,6 @@ if (!mysql_select_db ("ItProfi", $connectionid))
   die ("Keine Verbindung zur Datenbank"); 
 } 
 
-// Zuerst alle Datensätze löschen um keine Dopplungen zu bekommen. 
-mysql_query ("DELETE FROM login"); 
-
 // Daten eintragen 
 while (list ($key, $value) = each ($benutzer)) 
 { 
