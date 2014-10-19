@@ -262,7 +262,7 @@
 										$bday."', '". 
 										$nationality."', '". 
 										$email."', '". 
-										md5($passwort)."', '". 
+										md5($password)."', '". 
 										$tel."', '". 
 										$strasse."', '". 
 										$plz."', '". 
@@ -277,10 +277,10 @@
 					$sql_log = "INSERT INTO ".
 							$table . "(EMail, Kennwort) " .
 							"VALUES('".$email."', '". 
-										md5($passwort). "')"; 
+										md5($password). "')"; 
 					mysql_query($sql_log);
 
-					echo "Bestaetigung";
+  					header ("./login/login.php"); 
 
 				}	
 			?>		
