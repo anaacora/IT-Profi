@@ -7,9 +7,7 @@ include ("checkuser.php");
 </head> 
 <body> 
   BenutzerId: <?php echo $_SESSION["user_id"]; ?><br> 
-  Nickname: <?php echo $_SESSION["user_nickname"]; ?><br> 
-  Nachname: <?php echo $_SESSION["user_nachname"]; ?><br> 
-  Vorname: <?php echo $_SESSION["user_vorname"]; ?> 
+  EMail: <?php echo $_SESSION["user_email"]; ?><br> 
   <hr> 
   <a href="logout.php">Ausloggen</a> 
 </body> 
