@@ -72,6 +72,53 @@ div.register-box {
 .nav-tabs > li.active > a {
 	background-color:#2980b9 ;
 	border-color: #2980b9;
+<<<<<<< HEAD
+}
+
+.nav-tabs > li.active > a:focus {
+	background-color:#55a5d9 ;
+	border-color: #2980b9;
+	
+}
+
+.nav-tabs > li.active > a:hover {
+	color: #55a5d9;
+	background-color:#2980b9;
+	border-color:#2980b9;
+
+}
+
+.nav-tabs > li > a:hover, .nav-tabs > li > a:focus {
+	background-color:#55a5d9 ;
+	border-color: #2980b9;
+}
+
+.nav-tabs > li > a:hover {
+	color: #55a5d9;
+	background-color:#2980b9;
+	border-color:#2980b9;
+
+}
+
+.nav-tabs li {
+	width: 50%;
+	text-align: center;
+}
+
+.nav-tabs li:nth-child(odd) a {
+	border-radius: 7px 0px 0px 0px;
+}
+
+.nav-tabs li:nth-child(even) a {
+	border-radius: 0px 7px 0px 0px;
+	padding-right: 1px;
+}
+
+.main {
+	background: #2c3e50;
+	
+=======
+>>>>>>> origin/master
 }
 
 .nav-tabs > li.active > a:focus {
@@ -117,4 +164,3 @@ div.register-box {
 	background: #2c3e50;
 	
 }
-
